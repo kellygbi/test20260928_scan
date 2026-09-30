@@ -1,0 +1,15 @@
+using System.Data.SqlClient;
+
+public class TestSecurity
+{
+    public void GetUser(string userInput)
+    {
+        using SqlConnection conn =
+            new SqlConnection("Server=localhost;Database=Test;Trusted_Connection=True;");
+
+        string sql = "SELECT * FROM Users WHERE Name = '" + userInput + "'";
+
+        using SqlCommand cmd = new SqlCommand(sql, conn);
+        cmd.ExecuteReader();
+    }
+}
